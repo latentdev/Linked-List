@@ -36,13 +36,14 @@ void Iterator<a_type>::set_m_node(Node<a_type>* x)
 template<typename a_type>
 Iterator<a_type>& Iterator<a_type>::operator=(Iterator<a_type>& obj)
 {
-	m_node = obj.get_m_node();
+	m_node = *obj.get_m_node();
 	return *this;
 }
 
 template<typename a_type>
 Iterator<a_type>& Iterator<a_type>::operator++()
 {
+	cout << m_node->get_m_next()<<endl;
 	m_node = m_node->get_m_next();
 	return *this;
 }
