@@ -16,10 +16,14 @@ int main()
 	*x = temp->get_m_data();
 	a->InsertAfter(4,x);
 	a->InsertBefore(3, x);
-	Iterator<int> y;
-	y=a->Begin();
+	Iterator<int> *y;
+	y=&a->Begin();
+//	(*y)++;
+	++(*y);
+	LinkedList<int>* b = new LinkedList<int>(*a);
+
 	a->Purge();
-	LinkedList<int>* b = new LinkedList<int>();
+	
 
 	//cout << "Hello World" << endl;
 	//cout << a->Head()->get_m_next() << endl;

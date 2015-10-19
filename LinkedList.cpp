@@ -16,7 +16,17 @@ LinkedList<a_type>::LinkedList(a_type in_data)
 template<typename a_type>
 LinkedList<a_type>::LinkedList(const LinkedList & obj)
 {
+	
+	if (obj.isEmpty() != true)
+	{
+		m_head = new Node<a_type>(obj.get_m_head()->get_m_data());
+		for (Node<a_type>* p1 = obj.get_m_head(), *p2 = m_head; p1->get_m_next()!=0; p1 = p1->get_m_next(), p2 = p2->get_m_next())
+		{
+			p2->set_m_next(new Node<a_type>(p1->get_m_next()->get_m_data(),0,p2));
+				m_tail = p2->get_m_next();
+		}
 
+	}
 }
 
 template<typename a_type>
@@ -26,12 +36,24 @@ LinkedList<a_type>::~LinkedList()
 }
 
 template<typename a_type>
-bool LinkedList<a_type>::isEmpty()
+bool LinkedList<a_type>::isEmpty()const
 {
 	if (m_head == 0)
 		return true;
 	else
 		return false;
+}
+
+template<typename a_type>
+const Node<a_type>& LinkedList<a_type>::First()
+{
+	return m_head;
+}
+
+template<typename a_type>
+const Node<a_type>& LinkedList<a_type>::Last()
+{
+	return m_tail;
 }
 
 template<typename a_type>
@@ -173,9 +195,27 @@ void LinkedList<a_type>::InsertBefore(a_type data, a_type * in)
 template<typename a_type>
 Iterator<a_type> LinkedList<a_type>::Begin()
 {
-	Iterator<a_type>* x = new Iterator<a_type>(m_head);
-	return *x;
+	return Iterator<a_type> (*m_head);
 }
+
+template<typename a_type>
+Iterator<a_type> LinkedList<a_type>::End()
+{
+	return Iterator<a_type>(*m_tail);
+}
+
+template<typename a_type>
+Node<a_type>* LinkedList<a_type>::get_m_head()const
+{
+	return m_head;
+}
+
+template<typename a_type>
+Node<a_type>* LinkedList<a_type>::get_m_tail()const
+{
+	return m_tail;
+}
+
 
 /*template<typename a_type>
 Node<a_type> * LinkedList<a_type>::Head()

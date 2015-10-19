@@ -26,7 +26,9 @@ Node<a_type>::Node(a_type in_data, Node * in_next, Node * in_prev)
 template<typename a_type>
 Node<a_type>::Node(const Node & obj)
 {
-
+	m_data = obj.get_m_data();
+	m_next = obj.get_m_next();
+	m_prev = obj.get_m_prev();
 }
 
 template<typename a_type>
@@ -46,7 +48,7 @@ Node<a_type>::~Node()
 }
 
 template<typename a_type>
-a_type Node<a_type>::get_m_data()
+a_type Node<a_type>::get_m_data()const
 {
 	return m_data;
 }
@@ -58,7 +60,7 @@ void Node<a_type>::set_m_data(a_type in_data)
 }
 
 template<typename a_type>
-Node<a_type>* Node<a_type>::get_m_next()
+Node<a_type>* Node<a_type>::get_m_next()const
 {
 	return m_next;
 }
@@ -70,7 +72,7 @@ void Node<a_type>::set_m_next(Node<a_type>* in_next)
 }
 
 template<typename a_type>
-Node<a_type>* Node<a_type>::get_m_prev()
+Node<a_type>* Node<a_type>::get_m_prev()const
 {
 	return m_prev;
 }

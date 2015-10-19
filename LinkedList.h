@@ -5,7 +5,7 @@
 template<typename a_type>
 class LinkedList
 {
-protected:
+private:
 	Node<a_type>* m_tail;
 	Node<a_type>* m_head;
 public:
@@ -13,7 +13,9 @@ public:
 	LinkedList(a_type in_data);
 	LinkedList(const LinkedList& obj);
 	~LinkedList();
-	bool isEmpty();
+	bool isEmpty()const;
+	const Node<a_type>& First();
+	const Node<a_type>& Last();
 	void Prepend(a_type* in);
 	void Append(a_type* in);
 	void Purge();
@@ -21,6 +23,9 @@ public:
 	void InsertAfter(a_type data, a_type* in);
 	void InsertBefore(a_type data, a_type* in);
 	Iterator<a_type> Begin();
+	Iterator<a_type> End();
+	Node<a_type>* get_m_head()const;
+	Node<a_type>* get_m_tail()const;
 	//Node<a_type>* Head();
 };
 
