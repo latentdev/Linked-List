@@ -32,9 +32,22 @@
 *	Iterator<a_type>& operator=(Iterator<a_type>& obj);
 *		assignment operator
 *		points m_node to the passed in iterators m_node
-*	Iterator<a_type>& operator++();
-*	Iterator<a_type> operator++(int in);
 *
+*	Iterator<a_type>& operator++();
+*		pre increment operator
+*		increments m_node and returns this
+*
+*	Iterator<a_type> operator++(int in)
+*		postt increment operator
+*		creates a dummy iterator, increments m_node then returns the dummy iterator
+*
+*	Iterator<a_type>& operator--();
+*		pre decrement operator
+*		decrements m_node and returns this
+*
+*	Iterator<a_type> operator--(int in)
+*		post decrement operator
+*		creates a dummy iterator, decrements m_node then returns the dummy iterator
 *Methods:
 *
 *
@@ -47,7 +60,7 @@ private:
 	Node<a_type>* m_node;
 public:
 	Iterator();
-	Iterator(Node<a_type> x);
+	Iterator(Node<a_type>* x);
 	Iterator(const Iterator& obj);
 	~Iterator();
 	Node<a_type>* get_m_node()const;
@@ -55,6 +68,8 @@ public:
 	Iterator<a_type>& operator=(Iterator<a_type>& obj);
 	Iterator<a_type>& operator++();
 	Iterator<a_type> operator++(int in);
+	Iterator<a_type>& operator--();
+	Iterator<a_type> operator--(int in);
 
 
 };

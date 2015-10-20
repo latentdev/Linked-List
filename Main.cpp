@@ -1,31 +1,22 @@
-#include "LinkedList.h"
-#include "Node.h"
-#include "Iterator.h"
-#include <iostream>
-using namespace std;
-
+#include "Driver.h"
+/*************************************************************************
+*Author:					Nicholas Olson
+*Date Created:				10-16-15
+*Last Modification Date:	10-18-15
+*Lab Number:				CST 211 Assignment 3
+*Filename:					Main.cpp
+*
+*Overview:
+*	Entry point of program
+*
+*Input:
+*	All the input is already set in the driver file. Only exists to show the uses of my array class.
+*
+*Output:
+*	driver() defined in Driver.cpp will walk through several operations involving the use of my linked list class and output it's progress and the results
+**************************************************************************/
 int main()
 {
-	int*x=new int;
-	*x = 4;
-	LinkedList<int>* a = new LinkedList<int>(3);
-	a->Append(x);
-	a->Prepend(x);
-	Node<int>* temp = new Node<int>();
-	temp->set_m_data(a->Extract(3).get_m_data());
-	*x = temp->get_m_data();
-	a->InsertAfter(4,x);
-	a->InsertBefore(3, x);
-	Iterator<int> *y;
-	y=&a->Begin();
-//	(*y)++;
-	++(*y);
-	LinkedList<int>* b = new LinkedList<int>(*a);
-
-	a->Purge();
-	
-
-	//cout << "Hello World" << endl;
-	//cout << a->Head()->get_m_next() << endl;
+	Driver();
 	return 0;
 }

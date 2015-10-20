@@ -118,6 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="Iterator.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -131,6 +132,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Driver.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="LinkedList.h" />

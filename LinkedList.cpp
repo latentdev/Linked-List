@@ -1,4 +1,12 @@
 #include "LinkedList.h"
+
+/******************************************************
+*   Purpose:  default constructor
+
+*         Entry:  none
+
+*         Exit: creates a new empty node for m_head. sets the tail at the head
+*******************************************************/
 template<typename a_type>
 LinkedList<a_type>::LinkedList()
 {
@@ -6,6 +14,13 @@ LinkedList<a_type>::LinkedList()
 	m_tail = m_head;
 }
 
+/******************************************************
+*   Purpose:  constructor
+
+*         Entry:  passed in data
+
+*         Exit: creates a new node with the passed in data. sets the tail at the head
+*******************************************************/
 template<typename a_type>
 LinkedList<a_type>::LinkedList(a_type in_data)
 {
@@ -13,6 +28,13 @@ LinkedList<a_type>::LinkedList(a_type in_data)
 	m_tail = m_head;
 }
 
+/******************************************************
+*   Purpose:  copy constructor
+
+*         Entry:  passed in const refrence
+
+*         Exit: creates a new Linked List then goes through it creating and copying each node from the passed in const refrence
+*******************************************************/
 template<typename a_type>
 LinkedList<a_type>::LinkedList(const LinkedList & obj)
 {
@@ -29,12 +51,26 @@ LinkedList<a_type>::LinkedList(const LinkedList & obj)
 	}
 }
 
+/******************************************************
+*   Purpose:  destructor
+
+*         Entry:  none
+
+*         Exit: calls purge to delete all the memory stored in the nodes
+*******************************************************/
 template<typename a_type>
 LinkedList<a_type>::~LinkedList()
 {
 	Purge();
 }
 
+/******************************************************
+*   Purpose:  checks the list to see if it's empty
+
+*         Entry:  none
+
+*         Exit: checks if there is nothing at the head. if so returns true else returns false
+*******************************************************/
 template<typename a_type>
 bool LinkedList<a_type>::isEmpty()const
 {
@@ -44,18 +80,42 @@ bool LinkedList<a_type>::isEmpty()const
 		return false;
 }
 
+/******************************************************
+*   Purpose:  getter for m_head
+
+*         Entry:  none
+
+*         Exit: returns a reference to the head
+*******************************************************/
 template<typename a_type>
 const Node<a_type>& LinkedList<a_type>::First()
 {
 	return m_head;
 }
 
+/******************************************************
+*   Purpose:  getter for m_tail
+
+*         Entry:  none
+
+*         Exit: returns a reference to the tail
+*******************************************************/
 template<typename a_type>
 const Node<a_type>& LinkedList<a_type>::Last()
 {
 	return m_tail;
 }
 
+/******************************************************
+*   Purpose:  create a new node and stick it at the start of the list
+
+*         Entry:  passed in data pointer
+
+*         Exit: creates a new node with the passed in data
+				sets the new nodes next to the head and the previous to 0
+				then sets the heads previous to the new node
+				then points head at new node
+*******************************************************/
 template<typename a_type>
 void LinkedList<a_type>::Prepend(a_type * in)
 {
@@ -64,7 +124,16 @@ void LinkedList<a_type>::Prepend(a_type * in)
 	m_head = x;
 }
 
+/******************************************************
+*   Purpose:  create a new node and stick it at the end of the list
 
+*         Entry:  passed in data pointer
+
+*         Exit: creates a new node with the passed in data
+				sets the new nodes next to 0 and the previous to the tail
+				then sets the tails next to the new node
+				then points tail at new node
+*******************************************************/
 template<typename a_type>
 void LinkedList<a_type>::Append(a_type * in)
 {
@@ -73,6 +142,13 @@ void LinkedList<a_type>::Append(a_type * in)
 	m_tail = x;
 }
 
+/******************************************************
+*   Purpose:  delete all nodes in list
+
+*         Entry:  none
+
+*         Exit: starts at the end of the list deletes the node then moves on to the previous till there are no nodes left
+*******************************************************/
 template<typename a_type>
 void LinkedList<a_type>::Purge()
 {
@@ -88,6 +164,13 @@ void LinkedList<a_type>::Purge()
 	m_tail = 0;
 }
 
+/******************************************************
+*   Purpose:  find a specific node and pull it out of the list
+
+*         Entry:  passed in data
+
+*         Exit: walks through list till it finds the data then sets the previous and next node to each other and returns the found node
+*******************************************************/
 template<typename a_type>
 Node<a_type>& LinkedList<a_type>::Extract(a_type in)
 {
@@ -134,6 +217,13 @@ Node<a_type>& LinkedList<a_type>::Extract(a_type in)
 		
 }
 
+/******************************************************
+*   Purpose:  create a new node and sticks it after a certain node
+
+*         Entry:  passed in data pointer and the passed in data for compare
+
+*         Exit: walks through list comparing data then creates a new node with the new data and places it after the found node
+*******************************************************/
 template<typename a_type>
 void LinkedList<a_type>::InsertAfter(a_type data, a_type * in)
 {
@@ -160,6 +250,13 @@ void LinkedList<a_type>::InsertAfter(a_type data, a_type * in)
 
 }
 
+/******************************************************
+*   Purpose:  create a new node and sticks it before a certain node
+
+*         Entry:  passed in data pointer and the passed in data for compare
+
+*         Exit: walks through list comparing data then creates a new node with the new data and places it before the found node
+*******************************************************/
 template<typename a_type>
 void LinkedList<a_type>::InsertBefore(a_type data, a_type * in)
 {
@@ -192,33 +289,54 @@ void LinkedList<a_type>::InsertBefore(a_type data, a_type * in)
 	}
 }
 
+/******************************************************
+*   Purpose:  create a new iterator at the start of the list
+
+*         Entry:  none
+
+*         Exit: creates a new iterator that is pointing at the head and returns it
+*******************************************************/
 template<typename a_type>
 Iterator<a_type> LinkedList<a_type>::Begin()
 {
-	return Iterator<a_type> (*m_head);
+	return *(new Iterator<a_type> (m_head));
 }
 
+/******************************************************
+*   Purpose:  create a new iterator at the end of the list
+
+*         Entry:  none
+
+*         Exit: creates a new iterator that is pointing at the tail and returns it
+*******************************************************/
 template<typename a_type>
 Iterator<a_type> LinkedList<a_type>::End()
 {
-	return Iterator<a_type>(*m_tail);
+	return *(new Iterator<a_type>(m_tail));
 }
 
+/******************************************************
+*   Purpose:  getter for m_head
+
+*         Entry:  const for copy constructor
+
+*         Exit: returns m,_head
+*******************************************************/
 template<typename a_type>
 Node<a_type>* LinkedList<a_type>::get_m_head()const
 {
 	return m_head;
 }
 
+/******************************************************
+*   Purpose:  getter for m_tail
+
+*         Entry:  const for copy constructor
+
+*         Exit: returns m,_tail
+*******************************************************/
 template<typename a_type>
 Node<a_type>* LinkedList<a_type>::get_m_tail()const
 {
 	return m_tail;
 }
-
-
-/*template<typename a_type>
-Node<a_type> * LinkedList<a_type>::Head()
-{
-	return m_head;
-}*/
