@@ -1,0 +1,25 @@
+1. How is traversing a list using a iterator compare to using an index?
+	being able to increment an iterator is important because we may not always know where the data we want is located in a list
+
+2. How does the iterator know when it's at the end?
+	when the iteretor walks through the list it's always checking the nodes next to make sure it's not empty. it could also check the current node with the lists tail.
+	
+3. Write the code that would allow me to specify a start and end value and would generate a sublist of everything inbetween(inclusive)
+	
+	node * start = head
+	node * end ;
+	while(start_data!=data_in_node)
+	{
+		start=start->next;
+		end = start;
+	}
+	while(end_data!=data_in_node)
+		end=end-next()
+	while (start !=end)
+	{
+		cout<<start->data
+	}
+	cout<< end->data;
+
+4. What would be the big O notation for the function in question 3?
+	O(2n)
